@@ -32,10 +32,6 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
-    .gallery img.error {
-      border: 2px solid red;
-      opacity: 0.5;
-    }
   </style>
 </head>
 <body>
@@ -117,7 +113,6 @@
       'image/2024/ប្រជុំជា១កុមារតំណាងការអភិវឌ្ឍន៏១.jpg',
       'image/2024/ពិធីចែកវិញ្ញាបនបត្របញ្ជាក់ការសិក្សាជូនសិស្សមត្តេយ្យអាយុ៥ឆ្នា.jpg',
       'image/2024/វគ្គបំប៉នបន្ថែមគ្រូមត្តេយ្យសិក្សាស្តីពីការងាររដ្ឋបាលថ្នាក់ បច្ចេកទេស និងល្បែងសេរី.jpg',
-      
       'image/2024/សកម្មភាពកុមារតំណាងការអភិវឌ្ឍន៍គូរគំនូរ.jpg',
       'image/2024/សកម្មភាពកុមារតំណាងការអភិវឌ្ឍន៍ជប់លៀង.jpg',
       'image/2024/សកម្មភាពចុះវាស់ថ្លឹងកុមារ និងធ្វើអាហារបង្ហាញគម្រោង WHC ស្រុកស្វាយលើ-1.jpg',
@@ -140,17 +135,15 @@
       'image/2024/សន្និសីទវីដេអូររវាងកុមារសាលាបឋមសិក្សាអូរការ និងកុមារនៅប្រទេសបារាំង.jpg',
       'image/2024/សន្និសីទវីដេអូររវាងកុមារសាលាអនុវិទ្យាល័យហ៊ុន សែន ក្ងាន និងកុមារនៅប្រទេស បារាំង.jpg',
       'image/2024/សិក្ខាសាលាផ្នែកប្រព័ន្ធសប្បុរសធម៌.jpg',
-      
-      
     ];
 
     const gallery = document.querySelector('.gallery');
 
     images.forEach(src => {
       const img = document.createElement('img');
-      img.src = src;
+      img.src = encodeURI(src); // Handle special characters in filenames
       img.alt = 'Gallery Image';
-      img.onerror = () => img.classList.add('error');
+      img.onerror = () => img.remove(); // Remove image if it fails to load
       gallery.appendChild(img);
     });
   </script>
